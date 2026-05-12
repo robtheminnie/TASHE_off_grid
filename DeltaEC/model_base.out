@@ -1,6 +1,6 @@
 TITLE      Description
 !->C:\Users\rober\Documents\GitHub\TASHE_off_grid\DeltaEC\model_base.out
-!Created@21:30:05  09-May-2026 with DeltaEC version 7.0.2.0!under win32,
+!Created@09:26:46  12-May-2026 with DeltaEC version 7.0.2.0!under win32,
 using Win 10.0.19045 () under Python 3.9.21.
 !DRIVE RATIO              - 5.54% at piston duct
 !P MEAN                   - 1e5Pa
@@ -27,8 +27,8 @@ BEGIN      gas
 !Air
  1.0000E+5  a Mean P Pa                      0.0000 E Htot   W
    11.000   b Freq   Hz                      0.0000 F Edot   W
-  328.00    c TBeg   K                  
- 6098.3     d |p|    Pa       G         
+  300.00    c TBeg   K                  
+ 6093.2     d |p|    Pa       G         
      0.0000 e Ph(p)  deg                
      0.0000 f |U|    m^3/s              
      0.0000 g Ph(U)  deg                
@@ -51,7 +51,7 @@ RPN        COMP length
 4a 1000 /
 !---------------------------------  5 ---------------------------------
 RPN        REGEN area
-   59.000   a G or T                    2.7340E-3                 A Area
+   33.039   a G or T                    8.5732E-4                 A Area
 5a 2000 / sqrd 3.1416 *
 !---------------------------------  6 ---------------------------------
 RPN        TBT internal area (mm)
@@ -76,146 +76,148 @@ RPN        ELBOW area
 10a 2000 / sqrd 3.1416 *
 !--------------------------------- 11 ---------------------------------
 RPN        CHX area
-   59.000   a G or T                    2.7340E-3                 A Area
+sameas   5a a G or T                    8.5732E-4                 A Area
 11a 2000 / sqrd 3.1416 *
 !--------------------------------- 12 ---------------------------------
 RPN        CHX gasA/A
-    3.0000  a G or T                    0.38782                   A gasA/A
+    3.0000  a G or T                    0.3878                    A gasA/A
                                         1.5000E-3                 B rh
-12a 2000 / ; 12a 2000 / sqrd 3.1416 * 150 * 11A /
+                                        1.2367                    C gasA/ACalc
+12a 2000 / sqrd 3.1416 * 150 * 11A / ; 12a 2000 / ; 0.3878
 !--------------------------------- 13 ---------------------------------
 RPN        HHX area
-   59.000   a G or T                    2.7340E-3                 A Area
+sameas  11a a G or T                    8.5732E-4                 A Area
 13a 2000 / sqrd 3.1416 *
 !--------------------------------- 14 ---------------------------------
 RPN        HHX gasA/A
     3.0000  a G or T                    0.33611                   A gasA/A
                                         1.5000E-3                 B rh
-14a 2000 / ; 14a 2000 / sqrd 3.1416 * 130 * 13A /
+                                        1.0718                    C gasA/ACalc
+14a 2000 / sqrd 3.1416 * 130 * 13A / ; 14a 2000 / ; 0.33611
 !--------------------------------- 15 ---------------------------------
 RPN        PISTON AREA
    40.000   a G or T                    1.2566E-3                 A Area
 15a 2000 / 15a 2000 / * 3.1416 *
 !--------------------------------- 16 ---------------------------------
 TBRANCH    flow split
--2.4101E+7  a Re(Zb) Pa-s/m^3 G          6098.3     A |p|    Pa
- 2.0561E+7  b Im(Zb) Pa-s/m^3 G              0.0000 B Ph(p)  deg
-                                         1.9250E-4  C |U|    m^3/s
-                                         -139.53    D Ph(U)  deg
-                                        -0.44653    E HtotBr W
-                                        -0.44653    F EdotBr W
-                                            0.44653 G EdotTr W
+-4.8678E+7  a Re(Zb) Pa-s/m^3 G          6093.2     A |p|    Pa
+ 4.7164E+6  b Im(Zb) Pa-s/m^3 G              0.0000 B Ph(p)  deg
+                                         1.2459E-4  C |U|    m^3/s
+                                         -174.47    D Ph(U)  deg
+                                        -0.37781    E HtotBr W
+                                        -0.37781    F EdotBr W
+                                            0.37781 G EdotTr W
 !--------------------------------- 17 ---------------------------------
 DUCT       ELBOW
-sameas  10A a Area   m^2      Mstr       6097.1     A |p|    Pa
- 7.8541E-2  b Perim  m        17a        1.1701E-2  B Ph(p)  deg
- 5.0000E-2  c Length m                   2.4979E-4  C |U|    m^3/s
- 5.0000E-4  d Srough                     -126.46    D Ph(U)  deg
-                                        -0.44653    E Htot   W
-ideal           Solid type              -0.45264    F Edot   W
+sameas  10A a Area   m^2      Mstr       6092.9     A |p|    Pa
+ 7.8541E-2  b Perim  m        17a        1.0351E-2  B Ph(p)  deg
+ 5.0000E-2  c Length m                   1.5342E-4  C |U|    m^3/s
+ 5.0000E-4  d Srough                     -145.11    D Ph(U)  deg
+                                        -0.37781    E Htot   W
+ideal           Solid type              -0.38343    F Edot   W
 !--------------------------------- 18 ---------------------------------
 CONE       ELBOW COMPLIANCE TRANSITION
-sameas  17a a AreaI  m^2      Mstr       6097.0     A |p|    Pa
- 7.8541E-2  b PerimI m        18a        1.1898E-2  B Ph(p)  deg
- 1.0000E-3  c Length m                   2.5129E-4  C |U|    m^3/s
-sameas  19a d AreaF  m^2      Mstr       -126.22    D Ph(U)  deg
- 9.4248E-2  e PerimF m        18d       -0.44653    E Htot   W
- 5.0000E-4  f Srough                    -0.45278    F Edot   W
+sameas  17a a AreaI  m^2      Mstr       6092.9     A |p|    Pa
+ 7.8541E-2  b PerimI m        18a        1.0526E-2  B Ph(p)  deg
+ 1.0000E-3  c Length m                   1.5451E-4  C |U|    m^3/s
+sameas  19a d AreaF  m^2      Mstr       -144.56    D Ph(U)  deg
+ 9.4248E-2  e PerimF m        18d       -0.37781    E Htot   W
+ 5.0000E-4  f Srough                    -0.38356    F Edot   W
 ideal           Solid type              
 !--------------------------------- 19 ---------------------------------
 DUCT       COMPLIANCE
-sameas   3A a Area   m^2      Mstr       6073.0     A |p|    Pa
- 9.4250E-2  b Perim  m        19a        8.3258E-2  B Ph(p)  deg
-sameas   4A c Length m                   1.0207E-3  C |U|    m^3/s
- 2.0000E-4  d Srough                      -99.342   D Ph(U)  deg
-                                        -0.44653    E Htot   W
-ideal           Solid type              -0.50756    F Edot   W
+sameas   3A a Area   m^2      Mstr       6071.6     A |p|    Pa
+ 9.4250E-2  b Perim  m        19a        7.5472E-2  B Ph(p)  deg
+sameas   4A c Length m                   9.0338E-4  C |U|    m^3/s
+ 2.0000E-4  d Srough                      -99.028   D Ph(U)  deg
+                                        -0.37781    E Htot   W
+ideal           Solid type              -0.43391    F Edot   W
 !--------------------------------- 20 ---------------------------------
 CONE       INERT to COMP transition
-sameas  19a a AreaI  m^2      Mstr       6072.9     A |p|    Pa
- 9.4250E-2  b PerimI m        20a        8.3396E-2  B Ph(p)  deg
- 5.0000E-4  c Length m                   1.0216E-3  C |U|    m^3/s
-sameas  21a d AreaF  m^2      Mstr        -99.335   D Ph(U)  deg
- 7.8499E-2  e PerimF m        20d       -0.44653    E Htot   W
- 5.0000E-4  f Srough                    -0.50763    F Edot   W
+sameas  19a a AreaI  m^2      Mstr       6071.5     A |p|    Pa
+ 9.4250E-2  b PerimI m        20a        7.5599E-2  B Ph(p)  deg
+ 5.0000E-4  c Length m                   9.0429E-4  C |U|    m^3/s
+sameas  21a d AreaF  m^2      Mstr        -99.02    D Ph(U)  deg
+ 7.8499E-2  e PerimF m        20d       -0.37781    E Htot   W
+ 5.0000E-4  f Srough                    -0.43398    F Edot   W
 ideal           Solid type              
 !--------------------------------- 21 ---------------------------------
 DUCT       INERTANCE
-sameas   1A a Area   m^2      Mstr       6014.8     A |p|    Pa
- 7.8499E-2  b Perim  m        21a           0.19542 B Ph(p)  deg
-sameas   2A c Length m                   1.4706E-3  C |U|    m^3/s
- 2.0000E-4  d Srough                      -96.894   D Ph(U)  deg
-                                        -0.44653    E Htot   W
-ideal           Solid type              -0.54584    F Edot   W
+sameas   1A a Area   m^2      Mstr       6014.1     A |p|    Pa
+ 7.8499E-2  b Perim  m        21a           0.1794  B Ph(p)  deg
+sameas   2A c Length m                   1.3525E-3  C |U|    m^3/s
+ 2.0000E-4  d Srough                      -96.443   D Ph(U)  deg
+                                        -0.37781    E Htot   W
+ideal           Solid type              -0.46899    F Edot   W
 !--------------------------------- 22 ---------------------------------
 CONE       INERT to TEE transition
-sameas  21a a AreaI  m^2      Mstr       6014.6     A |p|    Pa
- 7.8499E-2  b PerimI m        22a           0.19583 B Ph(p)  deg
- 1.0000E-3  c Length m                   1.4721E-3  C |U|    m^3/s
-sameas  23a d AreaF  m^2      Mstr        -96.888   D Ph(U)  deg
- 7.8540E-2  e PerimF m        22d       -0.44653    E Htot   W
- 5.0000E-4  f Srough                    -0.54597    F Edot   W
+sameas  21a a AreaI  m^2      Mstr       6013.9     A |p|    Pa
+ 7.8499E-2  b PerimI m        22a           0.17978 B Ph(p)  deg
+ 1.0000E-3  c Length m                   1.3540E-3  C |U|    m^3/s
+sameas  23a d AreaF  m^2      Mstr        -96.437   D Ph(U)  deg
+ 7.8540E-2  e PerimF m        22d       -0.37781    E Htot   W
+ 5.0000E-4  f Srough                    -0.46911    F Edot   W
 ideal           Solid type              
 !--------------------------------- 23 ---------------------------------
 DUCT       TEE feedback entry
-sameas  10A a Area   m^2      Mstr       6008.8     A |p|    Pa
- 7.8540E-2  b Perim  m        23a           0.20608 B Ph(p)  deg
- 2.5000E-2  c Length m                   1.5094E-3  C |U|    m^3/s
- 5.0000E-4  d Srough                      -96.75    D Ph(U)  deg
-                                        -0.44653    E Htot   W
-ideal           Solid type                 -0.5492  F Edot   W
+sameas  10A a Area   m^2      Mstr       6008.0     A |p|    Pa
+ 7.8540E-2  b Perim  m        23a           0.18934 B Ph(p)  deg
+ 2.5000E-2  c Length m                   1.3912E-3  C |U|    m^3/s
+ 5.0000E-4  d Srough                      -96.297   D Ph(U)  deg
+                                        -0.37781    E Htot   W
+ideal           Solid type              -0.47207    F Edot   W
 !--------------------------------- 24 ---------------------------------
 SOFTEND    joint
-     0.0000 a Re(z)                      6008.8     A |p|    Pa
-     0.0000 b Im(z)                         0.20608 B Ph(p)  deg
-     0.0000 c Htot   W                   1.5094E-3  C |U|    m^3/s
-                                          -96.75    D Ph(U)  deg
-                                        -0.44653    E Htot   W
-                                           -0.5492  F Edot   W
-                                           -0.6137  G Re(z)
-                                            5.0300  H Im(z)
-                                          328.00    I T      K
+     0.0000 a Re(z)                      6008.0     A |p|    Pa
+     0.0000 b Im(z)                         0.18934 B Ph(p)  deg
+     0.0000 c Htot   W                   1.3912E-3  C |U|    m^3/s
+                                          -96.297   D Ph(U)  deg
+                                        -0.37781    E Htot   W
+                                        -0.47207    F Edot   W
+                                        -0.59386    G Re(z)
+                                            5.2236  H Im(z)
+                                          300.00    I T      K
 !--------------------------------- 25 ---------------------------------
 CONE       MCHX entry
-sameas  17a a AreaI  m^2      Mstr       6098.3     A |p|    Pa
+sameas  17a a AreaI  m^2      Mstr       6093.2     A |p|    Pa
  7.8541E-2  b PerimI m        25a            0.0000 B Ph(p)  deg
-     0.0000 c Length m                   1.9250E-4  C |U|    m^3/s
-sameas  26a d AreaF  m^2      Mstr         40.469   D Ph(U)  deg
-    0.18535 e PerimF m        25d           0.44653 E Htot   W
- 5.0000E-4  f Srough                        0.44653 F Edot   W
+     0.0000 c Length m                   1.2459E-4  C |U|    m^3/s
+sameas  26a d AreaF  m^2      Mstr          5.5341  D Ph(U)  deg
+    0.10379 e PerimF m        25d           0.37781 E Htot   W
+ 5.0000E-4  f Srough                        0.37781 F Edot   W
 ideal           Solid type              
 !--------------------------------- 26 ---------------------------------
 TX         MCHX
-sameas  11A a Area   m^2                 6098.3     A |p|    Pa
-sameas  12A b GasA/A                    -2.4428E-3  B Ph(p)  deg
- 1.3000E-2  c Length m                   1.5794E-4  C |U|    m^3/s
-sameas  12B d radius m                     27.419   D Ph(U)  deg
-  -24.747   e HeatIn W        G           -24.30    E Htot   W
-     0.0000 f SolidT K                      0.42747 F Edot   W
-                                          328.00    G GasT   K
-copper           Solid type               231.28    H SolidT K
+sameas  11A a Area   m^2                 6092.9     A |p|    Pa
+sameas  12A b GasA/A                    -4.8741E-3  B Ph(p)  deg
+ 1.3000E-2  c Length m                   1.2212E-4  C |U|    m^3/s
+sameas  12B d radius m                     -1.8926  D Ph(U)  deg
+  -25.586   e HeatIn W        G           -25.208   E Htot   W
+     0.0000 f SolidT K                      0.37183 F Edot   W
+                                          300.00    G GasT   K
+copper           Solid type               146.35    H SolidT K
 !--------------------------------- 27 ---------------------------------
 RPN        Local impedance
-     0.0000 a G or T                    -1.7782E+7                A ChngeMe
-                                        3.4274E+7                 B ChngeMe
+     0.0000 a G or T                    1.6435E+6                 A ChngeMe
+                                        4.9866E+7                 B ChngeMe
 p1 U1 / real p1 U1 / imag
 !--------------------------------- 28 ---------------------------------
 DUCT       MCHX to REGEN dead space
- 2.7340E-3  a Area   m^2      Mstr       6098.3     A |p|    Pa
-    0.18535 b Perim  m        28a       -2.4465E-3  B Ph(p)  deg
- 1.0000E-4  c Length m                   1.5755E-4  C |U|    m^3/s
- 5.0000E-4  d Srough                       27.151   D Ph(U)  deg
-                                          -24.30    E Htot   W
-ideal           Solid type                  0.42744 F Edot   W
+ 2.7340E-3  a Area   m^2      Mstr       6092.9     A |p|    Pa
+    0.18535 b Perim  m        28a       -4.8775E-3  B Ph(p)  deg
+ 1.0000E-4  c Length m                   1.2214E-4  C |U|    m^3/s
+ 5.0000E-4  d Srough                       -2.2825  D Ph(U)  deg
+                                          -25.208   E Htot   W
+ideal           Solid type                  0.3718  F Edot   W
 !--------------------------------- 29 ---------------------------------
 STKSCREEN  REGENERATOR
-sameas   5A a Area   m^2                 6015.6     A |p|    Pa
-    0.92634 b VolPor          G             0.21849 B Ph(p)  deg
- 2.5000E-2  c Length m                   4.1259E-4  C |U|    m^3/s
- 1.3800E-4  d rh     m                    -33.121   D Ph(U)  deg
-    0.3000  e ksFrac                      -24.30    E Htot   W
-                                            1.0368  F Edot   W
-                                          328.00    G TBeg   K
+sameas   5A a Area   m^2                 6017.9     A |p|    Pa
+    0.7520  b VolPor          G             0.20771 B Ph(p)  deg
+ 2.5000E-2  c Length m                   3.5307E-4  C |U|    m^3/s
+ 1.3800E-4  d rh     m                    -22.363   D Ph(U)  deg
+    0.3000  e ksFrac                      -25.208   E Htot   W
+                                            0.98101 F Edot   W
+                                          300.00    G TBeg   K
 stainless           Solid type            820.00    H TEnd   K
 !--------------------------------- 30 ---------------------------------
 RPN        Hot regen temp
@@ -223,144 +225,144 @@ RPN        Hot regen temp
 29H
 !--------------------------------- 31 ---------------------------------
 TX         HHX
-sameas  13A a Area   m^2                 6014.1     A |p|    Pa
-sameas  14A b GasA/A                        0.22434 B Ph(p)  deg
- 2.5000E-2  c Length m                   4.6869E-4  C |U|    m^3/s
-sameas  14B d radius m                    -43.102   D Ph(U)  deg
-   30.000   e HeatIn W                      5.6997  E Htot   W
-     0.0000 f SolidT K                      1.0252  F Edot   W
+sameas  13A a Area   m^2                 6013.7     A |p|    Pa
+sameas  14A b GasA/A                        0.21349 B Ph(p)  deg
+ 2.5000E-2  c Length m                   3.6448E-4  C |U|    m^3/s
+sameas  14B d radius m                    -26.753   D Ph(U)  deg
+   30.000   e HeatIn W                      4.7919  E Htot   W
+     0.0000 f SolidT K                      0.97678 F Edot   W
                                           820.00    G GasT   K
-copper           Solid type               842.53    H SolidT K
+copper           Solid type               859.87    H SolidT K
 !--------------------------------- 32 ---------------------------------
 STKCONE    TBT entry cone
-sameas  31a a AreaI  m^2      Mstr       6014.0     A |p|    Pa
-    0.18535 b PerimI m        32a           0.22381 B Ph(p)  deg
- 9.0000E-3  c Length m                   5.0085E-4  C |U|    m^3/s
-sameas  33a d AreaF  m^2      Mstr        -47.074   D Ph(U)  deg
-    0.11624 e PerimF m        32d           5.6997  E Htot   W
- 5.0000E-4  f f_wall                        1.0214  F Edot   W
+sameas  31a a AreaI  m^2      Mstr       6013.6     A |p|    Pa
+    0.10379 b PerimI m        32a           0.21252 B Ph(p)  deg
+ 9.0000E-3  c Length m                   3.7168E-4  C |U|    m^3/s
+sameas  33a d AreaF  m^2      Mstr        -29.72    D Ph(U)  deg
+    0.11624 e PerimF m        32d           4.7919  E Htot   W
+ 5.0000E-4  f f_wall                        0.9685  F Edot   W
                                           820.00    G TBeg   K
-stainless           Solid type            718.71    H TEnd   K
+stainless           Solid type            657.35    H TEnd   K
 !--------------------------------- 33 ---------------------------------
 STKDUCT    TBT
-sameas   6A a Area   m^2      Mstr       6012.7     A |p|    Pa
-    0.11624 b Perim  m        33a           0.21627 B Ph(p)  deg
- 6.4000E-2  c Length m                   6.5634E-4  C |U|    m^3/s
-sameas   8A d WallA  m^2                  -58.963   D Ph(U)  deg
-                                            5.6997  E Htot   W
-                                            1.0110  F Edot   W
-                                          718.71    G TBeg   K
-stainless           Solid type            473.59    H TEnd   K
+sameas   6A a Area   m^2      Mstr       6012.8     A |p|    Pa
+    0.11624 b Perim  m        33a           0.20456 B Ph(p)  deg
+ 6.4000E-2  c Length m                   4.9865E-4  C |U|    m^3/s
+sameas   8A d WallA  m^2                  -50.483   D Ph(U)  deg
+                                            4.7919  E Htot   W
+                                            0.94978 F Edot   W
+                                          657.35    G TBeg   K
+stainless           Solid type            444.89    H TEnd   K
 !--------------------------------- 34 ---------------------------------
 STKCONE    TBT exit cone
 sameas  33a a AreaI  m^2      Mstr       6012.5     A |p|    Pa
-    0.11624 b PerimI m        34a           0.2154  B Ph(p)  deg
- 8.1000E-3  c Length m                   6.8896E-4  C |U|    m^3/s
-sameas  35a d AreaF  m^2      Mstr        -60.425   D Ph(U)  deg
-    0.18535 e PerimF m        34d           5.6997  E Htot   W
- 5.0000E-4  f f_wall                        1.0155  F Edot   W
-                                          473.59    G TBeg   K
-stainless           Solid type            328.00    H TEnd   K
+    0.11624 b PerimI m        34a           0.20291 B Ph(p)  deg
+ 8.1000E-3  c Length m                   5.1075E-4  C |U|    m^3/s
+sameas  35a d AreaF  m^2      Mstr        -51.499   D Ph(U)  deg
+    0.10379 e PerimF m        34d           4.7919  E Htot   W
+ 5.0000E-4  f f_wall                        0.95161 F Edot   W
+                                          444.89    G TBeg   K
+stainless           Solid type            300.00    H TEnd   K
 !--------------------------------- 35 ---------------------------------
 TX         SCHX
-sameas  11A a Area   m^2                 6011.5     A |p|    Pa
-sameas  12A b GasA/A                        0.21705 B Ph(p)  deg
- 1.3000E-2  c Length m                   7.3144E-4  C |U|    m^3/s
-sameas  12B d radius m                    -62.823   D Ph(U)  deg
-   -5.224   e HeatIn W        G             0.4757  E Htot   W
-     0.0000 f SolidT K                      0.99673 F Edot   W
-                                          328.00    G GasT   K
-copper           Solid type               320.49    H SolidT K
+sameas  11A a Area   m^2                 6010.0     A |p|    Pa
+sameas  12A b GasA/A                        0.20125 B Ph(p)  deg
+ 1.3000E-2  c Length m                   5.2210E-4  C |U|    m^3/s
+sameas  12B d radius m                    -52.742   D Ph(U)  deg
+   -3.9562  e HeatIn W        G             0.83571 E Htot   W
+     0.0000 f SolidT K                      0.94544 F Edot   W
+                                          300.00    G GasT   K
+copper           Solid type               280.38    H SolidT K
 !--------------------------------- 36 ---------------------------------
 DUCT       POWER core TEE entry
-sameas  10A a Area   m^2      Mstr       6008.8     A |p|    Pa
- 7.8540E-2  b Perim  m        36a           0.20608 B Ph(p)  deg
- 2.5000E-2  c Length m                   7.6456E-4  C |U|    m^3/s
- 5.0000E-4  d Srough                      -64.161   D Ph(U)  deg
-                                            0.4757  E Htot   W
-ideal           Solid type                  0.9937  F Edot   W
+sameas  10A a Area   m^2      Mstr       6008.0     A |p|    Pa
+ 7.8540E-2  b Perim  m        36a           0.18934 B Ph(p)  deg
+ 2.5000E-2  c Length m                   5.5184E-4  C |U|    m^3/s
+ 5.0000E-4  d Srough                      -55.155   D Ph(U)  deg
+                                            0.83571 E Htot   W
+ideal           Solid type                  0.94267 F Edot   W
 !--------------------------------- 37 ---------------------------------
 UNION      JOIN feedback branch
- 24         a SegNum                     6008.8     A |p|    Pa
-sameas  24A b |p|Sft Pa       =37A          0.20608 B Ph(p)  deg
-sameas  24B c Ph(p)S deg      =37B       2.1926E-3  C |U|    m^3/s
-sameas  24I d TSoft  K        =37G        -85.925   D Ph(U)  deg
-                                         2.9167E-2  E Htot   W
-                                            0.44449 F Edot   W
-                                          328.00    G T      K
+ 24         a SegNum                     6008.0     A |p|    Pa
+sameas  24A b |p|Sft Pa       =37A          0.18934 B Ph(p)  deg
+sameas  24B c Ph(p)S deg      =37B       1.8429E-3  C |U|    m^3/s
+sameas  24I d TSoft  K        =37G        -84.934   D Ph(U)  deg
+                                            0.45789 E Htot   W
+                                            0.4706  F Edot   W
+                                          300.00    G T      K
 !--------------------------------- 38 ---------------------------------
 DUCT       TEE power extraction entry
 sameas  10A a Area   m^2      Mstr       6000.0     A |p|    Pa
- 7.8540E-2  b Perim  m        38a           0.20555 B Ph(p)  deg
- 2.5000E-2  c Length m                   2.2298E-3  C |U|    m^3/s
- 5.0000E-4  d Srough                      -86.015   D Ph(U)  deg
-                                         2.9167E-2  E Htot   W
-ideal           Solid type                  0.44095 F Edot   W
+ 7.8540E-2  b Perim  m        38a           0.18717 B Ph(p)  deg
+ 2.5000E-2  c Length m                   1.8800E-3  C |U|    m^3/s
+ 5.0000E-4  d Srough                      -85.058   D Ph(U)  deg
+                                            0.45789 E Htot   W
+ideal           Solid type                  0.46746 F Edot   W
 !--------------------------------- 39 ---------------------------------
 DUCT       PISTON DUCT
-sameas  15A a Area   m^2      Mstr       5998.6     A |p|    Pa
-    0.12566 b Perim  m        39a           0.20519 B Ph(p)  deg
- 1.0000E-2  c Length m                   2.2676E-3  C |U|    m^3/s
- 5.0000E-4  d Srough                      -86.094   D Ph(U)  deg
-                                         2.9167E-2  E Htot   W
-ideal           Solid type                  0.43898 F Edot   W
+sameas  15A a Area   m^2      Mstr       5999.4     A |p|    Pa
+    0.12566 b Perim  m        39a           0.18689 B Ph(p)  deg
+ 5.0000E-3  c Length m                   1.8988E-3  C |U|    m^3/s
+ 5.0000E-4  d Srough                      -85.115   D Ph(U)  deg
+                                            0.45789 E Htot   W
+ideal           Solid type                  0.46656 F Edot   W
 !--------------------------------- 40 ---------------------------------
 RPN        Piston stroke (mm)
-     0.0000 a G or T                    52.217                    A stroke
+     0.0000 a G or T                    43.725                    A stroke
 U1 mag 15A / w / 2000 *
 !--------------------------------- 41 ---------------------------------
 IESPEAKER  ALTERNATOR
-sameas  15A a Area   m^2                  186.10    A |p|    Pa
-    4.0000  b R      ohms                -175.95    B Ph(p)  deg
-     0.0000 c L      H                   2.2682E-3  C |U|    m^3/s
-   10.800   d BLProd T-m                  -86.111   D Ph(U)  deg
- 6.2176E-2  e M      kg       G         -6.1999E-15 E Htot   W
-     0.0000 f K      N/m                 5.9650E-4  F Edot   W
-    0.2500  g Rm     N-s/m              -2.9167E-2  G WorkIn W
- 2.9943E-3  h |I|    A        G            19.482   H Volts  V
- -446.11    i Ph(I)  deg      G          2.9943E-3  I Amps   A
+sameas  15A a Area   m^2                  155.83    A |p|    Pa
+    4.0000  b R      ohms                -174.98    B Ph(p)  deg
+     0.0000 c L      H                   1.8993E-3  C |U|    m^3/s
+   10.800   d BLProd T-m                  -85.134   D Ph(U)  deg
+ 7.3803E-2  e M      kg       G          1.6653E-16 E Htot   W
+     0.0000 f K      N/m                 3.8503E-4  F Edot   W
+     0.0000 g Rm     N-s/m              -0.45789    G WorkIn W
+ 5.6895E-2  h |I|    A        G            16.096   H Volts  V
+ -445.13    i Ph(I)  deg      G          5.6895E-2  I Amps   A
                                           180.00    J Ph(V/I) deg
-                                         6184.3     K |Px|   Pa
-ideal           Solid type               -179.68    L Ph(Px) deg
+                                         6154.7     K |Px|   Pa
+ideal           Solid type               -179.69    L Ph(Px) deg
 !--------------------------------- 42 ---------------------------------
 RPN        Resistive load is fixed
   180.00    a =A?                       180.00                    A fi
 41J
 !--------------------------------- 43 ---------------------------------
 DUCT       REAR CAVITY
-sameas   9A a Area   m^2      Mstr        186.95    A |p|    Pa
-    0.7854  b Perim  m        43a        -175.95    B Ph(p)  deg
-    0.5000  c Length m                   4.8869E-17 C |U|    m^3/s
- 5.0000E-4  d Srough                      -86.208   D Ph(U)  deg
-                                        -6.1999E-15 E Htot   W
-ideal           Solid type               2.0419E-17 F Edot   W
+sameas   9A a Area   m^2      Mstr        156.61    A |p|    Pa
+    0.7854  b Perim  m        43a        -174.99    B Ph(p)  deg
+    0.5000  c Length m                   1.6542E-16 C |U|    m^3/s
+ 5.0000E-4  d Srough                      -86.928   D Ph(U)  deg
+                                         1.6653E-16 E Htot   W
+ideal           Solid type               4.3884E-16 F Edot   W
 !--------------------------------- 44 ---------------------------------
 HARDEND    CLOSE SYSTEM
-     0.0000 a R(1/z)          =44G        186.95    A |p|    Pa
-     0.0000 b I(1/z)          =44H       -175.95    B Ph(p)  deg
-     0.0000 c Htot   W        =44E       4.8869E-17 C |U|    m^3/s
-                                          -86.208   D Ph(U)  deg
-                                        -6.1999E-15 E Htot   W
-                                         2.0419E-17 F Edot   W
-                                         9.1795E-18 G R(1/z)
-                                         2.0536E-15 H I(1/z)
+     0.0000 a R(1/z)          =44G        156.61    A |p|    Pa
+     0.0000 b I(1/z)          =44H       -174.99    B Ph(p)  deg
+     0.0000 c Htot   W        =44E       1.6542E-16 C |U|    m^3/s
+                                          -86.928   D Ph(U)  deg
+                                         1.6653E-16 E Htot   W
+                                         4.3884E-16 F Edot   W
+                                         2.9396E-16 G R(1/z)
+                                         8.6716E-15 H I(1/z)
 !--------------------------------- 45 ---------------------------------
 RPN        DRIVE RATIO
     6.0000  a =A?                       6.0000                    A driveRatio
 38A 0a / 100 *
 !--------------------------------- 46 ---------------------------------
 RPN        PISTON MASS (grams)
-   81.000   a G or T                    62.176                    A M_piston
-                                        18.824                    B errPrcnt
+   81.000   a G or T                    73.803                    A M_piston
+                                        7.1972                    B errPrcnt
 46a 41e 1000 * - ; 41e 1000 *
 !--------------------------------- 47 ---------------------------------
 RPN        REGEN POROSITY
-     0.0000 a G or T                    0.92634                   A VolPor
+    0.7520  a G or T                    0.7520                    A VolPor
 29b
 ! The restart information below was generated by a previous run
 ! and will be used by DeltaEC the next time it opens this file.
 guessz   0d  16a  16b  26e  29b  35e  41e  41h  41i
-xprecn -5.8173E-3    191.50      196.06     1.4484E-4  -2.0956E-6   2.2031E-5  -3.6311E-7  -4.4296E-9  -1.6433E-3 
+xprecn  4.4693E-2   -181.13      -11.631    7.8894E-5  -1.5178E-7   1.5963E-5  -2.1171E-7   3.2289E-8  -4.1695E-3 
 targs   30a  37b  37c  37d  42a  44a  44b  44c  45a
-hilite 41H 41I 41e 45A 46A 47A
+hilite 29b 41H 41I 41e 45A 46A 47A
 mstr-slave 16 17 -2 18 -9 19 -2 20 -9 21 -2 22 -9 23 -2 25 -9 28 -2 32 -9 33 -2 34 -9 36 -2 38 -2 39 -2 43 -2
